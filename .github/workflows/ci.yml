@@ -1,0 +1,16 @@
+name: CI
+
+on:
+  push:          # запускать при каждом push
+  pull_request:  # и при открытии PR
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4          # скачать код
+      - uses: actions/setup-python@v5      # установить Python
+        with:
+          python-version: '3.11'
+      - run: pip install pytest            # установить зависимости
+      - run: pytest                        # запустить тесты
